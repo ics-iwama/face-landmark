@@ -1,4 +1,4 @@
-import * as THREE from 'three';
+import * as THREE from "three";
 
 // landmark-detectionに必要なnpmは下記参照
 // https://github.com/tensorflow/tfjs-models/tree/master/face-landmarks-detection/src/mediapipe
