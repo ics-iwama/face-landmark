@@ -102,7 +102,7 @@ function loadDecoImages() {
         render(); // 毎フレームレンダリングを呼び出す
       }
     };
-    img.src = `../images/${name}.png`;
+    img.src = `face-landmark/images/${name}.png`;
   });
 }
 
@@ -112,7 +112,7 @@ function createDecoPlane() {
   const ratio = decoImageRatios[currentDeco];
   const geometry = new THREE.PlaneGeometry(ratio, 1); // 縦横比を設定してジオメトリを作成
   const loader = new THREE.TextureLoader();
-  const texture = loader.load(`/images/${currentDeco}.png`, function(map) {
+  const texture = loader.load(`face-landmark/images/${currentDeco}.png`, function(map) {
     map.colorSpace = THREE.SRGBColorSpace;
   });
 
