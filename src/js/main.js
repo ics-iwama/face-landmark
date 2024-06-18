@@ -1,12 +1,4 @@
-import * as THREE from "three";
-
-// landmark-detectionに必要なnpmは下記参照
-// https://github.com/tensorflow/tfjs-models/tree/master/face-landmarks-detection/src/mediapipe
-// import '@mediapipe/face_mesh';
-// import '@tensorflow/tfjs-core';
-// // Register WebGL backend.
-// import '@tensorflow/tfjs-backend-webgl';
-// import * as faceLandmarksDetection from '@tensorflow-models/face-landmarks-detection';
+import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js";
 
 // グローバルな変数定義
 let decoImageList = ['hige', 'ribbon', 'rabbit', 'cat02', 'cat03', 'bear01']; // loadする画像のリスト

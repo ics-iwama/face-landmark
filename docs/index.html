@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="ja">
   <head>
+
+
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="./vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,7 +16,13 @@
     <!-- You must explicitly require a TF.js backend if you're not using the TF.js union bundle. -->
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-webgl"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/face-landmarks-detection"></script>
-
+    <script type="importmap">{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js",
+    "/@import-maps/three": "https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js"
+  },
+  "scope": {}
+}</script>
     <script type="module" crossorigin src="./assets/index-B88aoSYM.js"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-D__sqNzW.css">
   </head>
