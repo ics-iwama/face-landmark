@@ -1,4 +1,4 @@
-import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js";
+import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js';
 
 // グローバルな変数定義
 let decoImageList = ['hige', 'ribbon', 'rabbit', 'cat02', 'cat03', 'bear01']; // loadする画像のリスト
@@ -8,8 +8,6 @@ let buttonElements = document.querySelectorAll('.button');
 let positionButtonElements = document.querySelectorAll('.position-controllerButton');
 let currentDeco = 'rabbit'; // デフォルトのデコレーション
 
-const videoWidth = 960;
-const videoHeight = 540;
 const canvasEl = document.querySelector('#canvas');
 const videoEl = document.querySelector('#video');
 let decoMesh;
@@ -24,22 +22,22 @@ let scene, camera, renderer;
 
 // デコレーションごとの設定
 const decoSettings = {
-  hige: { scale: 30, basePoint: 164, xFix: 5, yFix: -20 },
-  rabbit: { scale: 280, basePoint: 1, xFix: 10, yFix: -30 },
+  hige: { scale: 25, basePoint: 164, xFix: -15, yFix: -10 },
+  rabbit: { scale: 200, basePoint: 1, xFix: 10, yFix: -30 },
   ribbon: { scale: 70, basePoint: 0, xFix: 5, yFix: -5 },
-  cat02: { scale: 180, basePoint: 1, xFix: 5, yFix: -20 },
-  cat03: { scale: 190, basePoint: 1, xFix: 0, yFix: 0 },
-  bear01: { scale: 180, basePoint: 1, xFix: 0, yFix: 0 },
+  cat02: { scale: 150, basePoint: 1, xFix: 5, yFix: -20 },
+  cat03: { scale: 150, basePoint: 1, xFix: 0, yFix: 0 },
+  bear01: { scale: 150, basePoint: 1, xFix: 0, yFix: 0 }
 };
 
 // THREE.jsの初期設定を行う関数
 function setupTHREE() {
   renderer = new THREE.WebGLRenderer({
     canvas: canvasEl,
-    alpha: true, //canvasの背景を透明にするために設定
+    alpha: true //canvasの背景を透明にするために設定
   });
   renderer.setPixelRatio(window.devicePixelRatio);
-  renderer.setSize(videoWidth, videoHeight);
+  renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setClearColor(0x000000, 0);
 
   // シーンを作成
@@ -47,7 +45,7 @@ function setupTHREE() {
 
   // カメラを作成
   const fov = 45;
-  camera = new THREE.PerspectiveCamera(fov, videoWidth / videoHeight, 1, 1000);
+  camera = new THREE.PerspectiveCamera(fov, window.innerWidth / window.innerHeight, 1, 1000);
   camera.position.set(0, 0, 680); //ここのzの値は手動調整。なんか計算式あるのかなあ..
 
   createDecoPlane();
@@ -111,7 +109,7 @@ function createDecoPlane() {
   const material = new THREE.MeshBasicMaterial({
     map: texture,
     side: THREE.DoubleSide,
-    transparent: true,
+    transparent: true
   });
 
   decoMesh = new THREE.Mesh(geometry, material);
@@ -145,7 +143,7 @@ function updateDecoMesh() {
     const faceCenter = new THREE.Vector3(
       basePoint.x + positionX + settings.xFix,
       basePoint.y + positionY + settings.yFix,
-      basePoint.z - 150
+      basePoint.z - 300
     );
 
     const noseTip = fixData[1];  // インデックス1が鼻の中央に対応
@@ -208,7 +206,7 @@ function calcNormalVector() {
     const perpendicularUp = {
       x: midpoint.x,
       y: midpoint.y - 10,
-      z: midpoint.z,
+      z: midpoint.z
     };
 
     faceNormalVector = new THREE.Vector3(noseTip.x, noseTip.y, noseTip.z)
@@ -227,8 +225,8 @@ async function enableWebcam() {
   const stream = await navigator.mediaDevices.getUserMedia({
     audio: false,
     video: {
-      width: videoWidth,
-      height: videoHeight
+      width: window.innerWidth,
+      height: window.innerHeight
     }
   });
 
@@ -263,8 +261,8 @@ function fixLandmarkValue(data) {
 
   return data.map((el) => {
     return {
-      x: el.x - videoWidth / 2,
-      y: -el.y + videoHeight / 2,
+      x: el.x - window.innerWidth / 2,
+      y: -el.y + window.innerHeight / 2,
       z: ((el.z / 100) * -1 + 1) * depthStrength
     };
   });
@@ -272,10 +270,21 @@ function fixLandmarkValue(data) {
 
 // 初期化関数
 async function init() {
-  addEventListeners(); // イベントリスナーを追加
+  addEventListeners();
   loadDecoImages(); // デコレーション画像の読み込みと縦横比の取得
   await enableWebcam(); // Webカメラの準備が整うのを待つ
   await setupModel(); // モデルのセットアップ
+
+  // キャンバスとビデオ要素の初期サイズを設定
+  canvasEl.width = window.innerWidth;
+  canvasEl.height = window.innerHeight;
+
+  // カメラのアスペクト比とレンダラーのサイズを設定
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+
+  render(); // 初回レンダリングを呼び出す
 }
 
 // 初期化関数を呼び出す
