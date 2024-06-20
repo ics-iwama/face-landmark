@@ -1,75 +1,80 @@
 <!DOCTYPE html>
-<html lang="ja">
-  <head>
+<html lang='ja'>
+<head>
 
 
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="./vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>face-landmarks-detection</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
-    <!-- Require the peer dependencies of face-landmarks-detection. -->
-    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-core"></script>
-    <!-- You must explicitly require a TF.js backend if you're not using the TF.js union bundle. -->
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-webgl"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/face-landmarks-detection"></script>
-    <script type="importmap">{
+  <meta charset='UTF-8' />
+  <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+  <title>face-landmarks-detection</title>
+  <link rel='preconnect' href='https://fonts.googleapis.com'>
+  <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
+  <link href='https://fonts.googleapis.com/css2?family=Itim&display=swap' rel='stylesheet'>
+  <!-- Require the peer dependencies of face-landmarks-detection. -->
+  <script src='https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh'></script>
+  <script src='https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-core'></script>
+  <!-- You must explicitly require a TF.js backend if you're not using the TF.js union bundle. -->
+  <script src='https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-webgl'></script>
+  <script src='https://cdn.jsdelivr.net/npm/@tensorflow-models/face-landmarks-detection'></script>
+  <script type="importmap">{
   "imports": {
     "three": "https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js",
     "/@import-maps/three": "https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js"
   },
   "scope": {}
 }</script>
-    <script type="module" crossorigin src="./assets/index-B88aoSYM.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-D__sqNzW.css">
-  </head>
-  <body>
-    <div id="app">
-      <div class="webcam">
-        <video id="video" style='transform: scaleX(-1)' autoplay muted playsinline loop></video>
-        <canvas id="canvas" style='transform: scaleX(-1)'></canvas>
-      </div>
-      <div class='position-controller'>
-        <button class='position-controllerButton position-controllerButton-top' data-position="top"><span>↑</span></button>
-        <button class='position-controllerButton position-controllerButton-bottom' data-position="bottom"><span>↓</span></button>
-        <button class='position-controllerButton position-controllerButton-right' data-position="right"><span>↑</span></button>
-        <button class='position-controllerButton position-controllerButton-left' data-position="left"><span>↓</span></button>
-      </div>
-      <ul class='buttonList'>
-        <li class='buttonList-item'>
-          <button class="button" data-deco="hige">
-            <img src='face-landmark/images/hige.png' alt='ひげのスタンプ' width='80'>
-          </button>
-        </li>
-        <li class='buttonList-item'>
-          <button class="button" data-deco="rabbit">
-            <img src='face-landmark/images/rabbit.png' alt='リップのスタンプ' width='60'>
-          </button>
-        </li>
-        <li class='buttonList-item'>
-          <button class="button button-white" data-deco="ribbon">
-            <img src='face-landmark/images/ribbon.png' alt='リボンのスタンプ' width='80'>
-          </button>
-        </li>
-        <li class='buttonList-item'>
-          <button class="button" data-deco="cat02">
-            <img src='face-landmark/images/cat02.png' alt='猫耳のスタンプ' width='80'>
-          </button>
-        </li>
-        <li class='buttonList-item'>
-          <button class="button" data-deco="cat03">
-            <img src='face-landmark/images/cat03.png' alt='猫耳のスタンプ' width='80'>
-          </button>
-        </li>
-        <li class='buttonList-item'>
-          <button class="button" data-deco="bear01">
-            <img src='face-landmark/images/bear01.png' alt='クマ耳のスタンプ' width='80'>
-          </button>
-        </li>
-      </ul>
+  <script type="module" crossorigin src="./assets/index-CQGj0I79.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-DRpamxWI.css">
+</head>
+<body>
+<div id='app'>
+  <div class='webcam'>
+    <video id='video' style='transform: scaleX(-1)' autoplay muted playsinline loop></video>
+    <canvas id='canvas' style='transform: scaleX(-1)'></canvas>
+  </div>
+  <div class='buttons'>
+    <div class='position-controller'>
+      <button class='position-controllerButton position-controllerButton-top' data-position='top'><span>↑</span>
+      </button>
+      <button class='position-controllerButton position-controllerButton-bottom' data-position='bottom'><span>↓</span>
+      </button>
+      <button class='position-controllerButton position-controllerButton-left' data-position='left'><span>↓</span>
+      </button>
+      <button class='position-controllerButton position-controllerButton-right' data-position='right'><span>↑</span>
+      </button>
     </div>
-  </body>
+    <ul class='buttonList'>
+      <li class='buttonList-item'>
+        <button class='button' data-deco='hige'>
+          <img src='./face-landmark/images/hige.png' alt='ひげのスタンプ' width='80'>
+        </button>
+      </li>
+      <li class='buttonList-item'>
+        <button class='button' data-deco='rabbit'>
+          <img src='./face-landmark/images/rabbit.png' alt='リップのスタンプ' width='60'>
+        </button>
+      </li>
+      <li class='buttonList-item'>
+        <button class='button button-white' data-deco='ribbon'>
+          <img src='./face-landmark/images/ribbon.png' alt='リボンのスタンプ' width='80'>
+        </button>
+      </li>
+      <li class='buttonList-item'>
+        <button class='button' data-deco='cat02'>
+          <img src='./face-landmark/images/cat02.png' alt='猫耳のスタンプ' width='80'>
+        </button>
+      </li>
+      <li class='buttonList-item'>
+        <button class='button' data-deco='cat03'>
+          <img src='./face-landmark/images/cat03.png' alt='猫耳のスタンプ' width='80'>
+        </button>
+      </li>
+      <li class='buttonList-item'>
+        <button class='button' data-deco='bear01'>
+          <img src='./face-landmark/images/bear01.png' alt='クマ耳のスタンプ' width='80'>
+        </button>
+      </li>
+    </ul>
+  </div>
+</div>
+</body>
 </html>

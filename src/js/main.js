@@ -23,11 +23,11 @@ let scene, camera, renderer;
 // デコレーションごとの設定
 const decoSettings = {
   hige: { scale: 25, basePoint: 164, xFix: -15, yFix: -10 },
-  rabbit: { scale: 200, basePoint: 1, xFix: 10, yFix: -30 },
-  ribbon: { scale: 70, basePoint: 0, xFix: 5, yFix: -5 },
-  cat02: { scale: 150, basePoint: 1, xFix: 5, yFix: -20 },
-  cat03: { scale: 150, basePoint: 1, xFix: 0, yFix: 0 },
-  bear01: { scale: 150, basePoint: 1, xFix: 0, yFix: 0 }
+  rabbit: { scale: 200, basePoint: 1, xFix: -10, yFix: -30 },
+  ribbon: { scale: 50, basePoint: 0, xFix: -25, yFix: 30 },
+  cat02: { scale: 150, basePoint: 1, xFix: -15, yFix: -20 },
+  cat03: { scale: 150, basePoint: 1, xFix: -20, yFix: 0 },
+  bear01: { scale: 150, basePoint: 1, xFix: -25, yFix: 0 }
 };
 
 // THREE.jsの初期設定を行う関数
